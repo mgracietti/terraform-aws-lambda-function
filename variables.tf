@@ -53,4 +53,16 @@ variable "cron_lambdas" {
     handler      = string
   }))
   description = "this variable will be used to create the cron lambdas"
+
+ default = {
+    sync_sales_channels = {
+      lambda_name = "sync-sales-channels"
+      image_url = "521857530109.dkr.ecr.us-east-2.amazonaws.com/open-fields-prod-dremio-integration:latest"
+      memory_size = 512
+      timeout = 900
+      trigger_cron = "0 23 * * ? *"
+      handler = "index.salesChannelsSync"
+    } 
+  }
+
 }
