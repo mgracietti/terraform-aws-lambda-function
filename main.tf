@@ -1,5 +1,5 @@
 locals {
-  app_name = "${var.project}-${var.environment}-${var.service}"  
+  app_name = "${var.project}-${var.environment}-${var.service}"
 }
 
 data "aws_iam_role" "iam_role_for_lambdas" {
@@ -22,7 +22,7 @@ resource "aws_lambda_function" "lambda" {
   depends_on = [aws_cloudwatch_log_group.log_group]
 
   tags = {
-    project = var.app_name
+    project = local.app_name
   }
 }
 

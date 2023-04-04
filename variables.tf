@@ -3,20 +3,20 @@ variable "aws_region" {
   description = "AWS Region"
 
   validation {
-    condition = can(regex("([A-Za-z0-9]+(-[A-Za-z0-9]+)+)", var.aws_region))    
+    condition     = can(regex("([A-Za-z0-9]+(-[A-Za-z0-9]+)+)", var.aws_region))
     error_message = "Verify you information and try again"
-  }    
-  
+  }
+
 }
 
 variable "environment" {
   type        = string
   description = "Identify the environment in which the resource is being used, such as \"dev\", \"qa\", \"test\", \"uat\", \"staging\", or \"prod\"."
-  
+
   validation {
-    condition = contains(["dev", "qa", "test", "uat", "staging", "prod"], var.environment)
+    condition     = contains(["dev", "qa", "test", "uat", "staging", "prod"], var.environment)
     error_message = "The environment value must be \"dev\", \"qa\", \"test\", \"uat\", \"staging\", or \"prod\"."
-  }    
+  }
 }
 
 
@@ -25,10 +25,10 @@ variable "project" {
   description = "The name of the project or application associated with the resource."
 
   validation {
-    condition = can(regex("([A-Za-z0-9]+(-[A-Za-z0-9]+)+)", var.project))    
+    condition     = can(regex("([A-Za-z0-9]+(-[A-Za-z0-9]+)+)", var.project))
     error_message = "Verify you information and try again"
-  }    
-  
+  }
+
 }
 
 variable "service" {
@@ -36,10 +36,10 @@ variable "service" {
   description = "The service or application that the resource is related to."
 
   validation {
-    condition = can(regex("([A-Za-z0-9]+(-[A-Za-z0-9]+)+)", var.service))    
+    condition     = can(regex("([A-Za-z0-9]+(-[A-Za-z0-9]+)+)", var.service))
     error_message = "Verify you information and try again"
-  }    
-  
+  }
+
 }
 
 
