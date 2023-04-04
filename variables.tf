@@ -56,7 +56,7 @@ variable "cron_lambdas" {
 
  default = {
     sync_sales_channels = {
-      lambda_name = "sync-sales-channels"
+      lambda_name = "serverless"
       image_url = "521857530109.dkr.ecr.us-east-2.amazonaws.com/open-fields-prod-dremio-integration:latest"
       memory_size = 512
       timeout = 900
