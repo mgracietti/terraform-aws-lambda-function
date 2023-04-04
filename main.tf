@@ -3,7 +3,8 @@ locals {
 }
 
 data "aws_iam_role" "iam_role_for_lambdas" {
-  name = "${local.app_name}-IAM-role-for-lambdas"
+#   name = "${local.app_name}-IAM-role-for-lambdas"
+  name = "cdp-IAM-role-for-lambdas"
 }
 
 resource "aws_lambda_function" "lambda" {
