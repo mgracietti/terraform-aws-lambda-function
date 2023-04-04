@@ -1,3 +1,7 @@
+variable "aws_account_id" {
+  type        = number
+  description = "AWS Account ID"
+}
 variable "aws_region" {
   type        = string
   description = "AWS Region"
@@ -45,8 +49,8 @@ variable "service" {
 
 variable "cron_lambdas" {
   type = map(object({
-    lambda_name  = string
-    image_url    = string
+    lambda_name = string
+    # image_url    = string
     memory_size  = string
     timeout      = string
     trigger_cron = string
@@ -54,15 +58,16 @@ variable "cron_lambdas" {
   }))
   description = "this variable will be used to create the cron lambdas"
 
- default = {
+  default = {
     sync_sales_channels = {
       lambda_name = "serverless"
-      image_url = "521857530109.dkr.ecr.us-east-2.amazonaws.com/open-fields-prod-dremio-integration:latest"
-      memory_size = 512
-      timeout = 900
+      # image_url = "521857530109.dkr.ecr.us-east-2.amazonaws.com/open-fields-prod-dremio-integration:latest"
+      # image_url = "${local.image_url}:latest"
+      memory_size  = 512
+      timeout      = 900
       trigger_cron = "0 23 * * ? *"
-      handler = "index.salesChannelsSync"
-    } 
+      handler      = "index.salesChannelsSync"
+    }
   }
 
 }

@@ -2,8 +2,14 @@ locals {
   app_name = "${var.project}-${var.environment}-${var.service}"
 }
 
+locals {
+  image_url = "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${local.app_name}:latest"
+}
+
+
+
 data "aws_iam_role" "iam_role_for_lambdas" {
-#   name = "${local.app_name}-IAM-role-for-lambdas"
+  #   name = "${local.app_name}-IAM-role-for-lambdas"
   name = "cdp-IAM-role-for-lambdas"
 }
 
@@ -12,9 +18,10 @@ resource "aws_lambda_function" "lambda" {
   function_name = "${local.app_name}-${each.value.lambda_name}-lambda"
   role          = data.aws_iam_role.iam_role_for_lambdas.arn
   package_type  = "Image"
-  image_uri     = each.value.image_url
-  memory_size   = each.value.memory_size
-  timeout       = each.value.timeout
+  # image_uri     = each.value.image_url
+  image_uri   = local.image_url
+  memory_size = each.value.memory_size
+  timeout     = each.value.timeout
 
   image_config {
     command = [each.value.handler]
